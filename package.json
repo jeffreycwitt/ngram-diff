@@ -1,0 +1,27 @@
+{
+  "name": "ngram-diff",
+  "version": "1.0.0",
+  "description": "a tiny package to visualize ngram similarity in reasonably sized chunks of text",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffreycwitt/ngram-diff.git"
+  },
+  "keywords": [
+    "ngram",
+    "diff",
+    "visualization"
+  ],
+  "author": "Jeffrey C. Witt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffreycwitt/ngram-diff/issues"
+  },
+  "homepage": "https://github.com/jeffreycwitt/ngram-diff#readme",
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}
