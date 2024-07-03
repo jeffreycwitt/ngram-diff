@@ -22,7 +22,7 @@ const getHtmlDiff = (base, compare) => {
 
 const getHtmlArray = (nGramArrayArray, opposingMap, textArray, baseOrCompare) => {
   const htmlArray = nGramArrayArray.map((ngramsForWord, i) => {
-    matchingWords = []
+    const matchingWords = []
     //loop through each of the ngrams for a given word
     ngramsForWord.forEach((ngram) => {
       // find "intersection" by checking to see if compareNGramMap contains this ngram. if it does add index of the word that is a part of the given ngram
@@ -46,9 +46,9 @@ const getNGramArrayArray = (textArray) => {
   const nGramSize = 4
   const textLength = textArray.length
   const nGramArrayArray = []
-  for (i=0; i<textLength; i++){
+  for (var i=0; i<textLength; i++){
     const nGramArray = []
-    for (n=0; n<nGramSize; n++){
+    for (var n=0; n<nGramSize; n++){
       if (i-n >= 0){
       const nGramSlice = textArray.slice(i-n, (i-n)+nGramSize).join("")
       nGramArray.push(nGramSlice)
@@ -63,9 +63,9 @@ const getReverseNGramMap = (textArray) => {
   const nGramSize = 4
   const textLength = textArray.length
   const nGramMap = {}
-  for (i=0; i<textLength; i++){
+  for (var i=0; i<textLength; i++){
     const nGramArray = []
-    for (n=0; n<nGramSize; n++){
+    for (var n=0; n<nGramSize; n++){
       if (i-n >= 0){
       const nGramSlice = textArray.slice(i-n, (i-n)+nGramSize).join("")
       nGramArray.push(nGramSlice)
