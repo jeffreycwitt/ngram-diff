@@ -1,6 +1,6 @@
 {
   "name": "ngram-diff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a tiny package to visualize ngram similarity in reasonably sized chunks of text",
   "main": "index.js",
   "scripts": {
