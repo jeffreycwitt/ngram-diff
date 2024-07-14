@@ -1,4 +1,4 @@
-const {getTextArray, getHtmlArray, getHtmlDiff, testFunction, getNGramArrayArray, textClean, getReverseNGramMap} = require('../index.js');
+const {getIndexMatchArray, getIndexDiff, getTextArray, getHtmlArray, getHtmlDiff, testFunction, getNGramArrayArray, textClean, getReverseNGramMap} = require('../index.js');
 
 it('the test function return the parameter', () => {
   const result = testFunction("test")
@@ -28,4 +28,13 @@ it('get getNGramArrayArray and get array ', () => {
 it('get getHtmlArray and get an Array back ', () => {
   const result = getHtmlArray(getNGramArrayArray(getTextArray("once upon a time, the brown fox when TO THE Store")), getReverseNGramMap(getTextArray("once UPon a time, a bear when to the store and ate cheese")), getTextArray("once upon a time, the brown fox when TO THE Store"), "base")
   expect(Array.isArray(result)).toBe(true)
+});
+it('get getIndexMatchArray and get an Array back ', () => {
+  const result = getIndexMatchArray(getNGramArrayArray(getTextArray("once upon a time, the brown fox when TO THE Store")), getReverseNGramMap(getTextArray("once UPon a time, a bear when to the store and ate cheese")), getTextArray("once upon a time, the brown fox when TO THE Store"), "base")
+  console.log(result)
+  expect(Array.isArray(result)).toBe(true)
+});
+it('get index match diff return.compare and check that it is an html string', () => {
+  const result = getIndexDiff("once upon a time, the brown fox when TO THE Store", "once UPon a time, a bear when to the store and ate cheese").compare
+  expect(typeof result).toBe("object")
 });

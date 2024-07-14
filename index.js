@@ -19,6 +19,40 @@ const getHtmlDiff = (base, compare) => {
   }
 }
 
+const getIndexDiff = (base, compare) => {
+
+  const baseText = textClean(base)
+  const compareText = textClean(compare)
+  const baseTextArray = getTextArray(baseText)
+  const compareTextArray = getTextArray(compareText)
+  const baseNGramArrayArray = getNGramArrayArray(baseTextArray) // array with an index for each word [0,1,2...] in base text and each index has an array of ngrams it is a part of
+  const baseNGramMap = getReverseNGramMap(baseTextArray) // a map where key is the ngram and value is array of the index positions that are included in the given array
+  const compareNGramArrayArray = getNGramArrayArray(compareTextArray) // array with an index per word in compare text and each index has an array of ngrams it is a part of
+  const compareNGramMap = getReverseNGramMap(compareTextArray) // a map where key is the ngram and value is array of the index positions that are included in the given array
+  
+  return {
+    base: getIndexMatchArray(baseNGramArrayArray, compareNGramMap),
+    compare: getIndexMatchArray(compareNGramArrayArray, baseNGramMap)
+  }
+}
+
+const getIndexMatchArray = (nGramArrayArray, opposingMap, textArray, baseOrCompare) => {
+  
+  const indexArray = nGramArrayArray.map((ngramsForWord, i) => {
+    const matchingWords = []
+    //loop through each of the ngrams for a given word
+    ngramsForWord.forEach((ngram) => {
+      // find "intersection" by checking to see if compareNGramMap contains this ngram. if it does add index of the word that is a part of the given ngram
+      if (opposingMap[ngram]){
+        matchingWords.push(i)
+      }
+    })
+    const match = matchingWords.includes(i) ? true : false
+    return match
+  })
+  return indexArray
+ 
+}
 
 const getHtmlArray = (nGramArrayArray, opposingMap, textArray, baseOrCompare) => {
   const htmlArray = nGramArrayArray.map((ngramsForWord, i) => {
@@ -101,4 +135,4 @@ const textClean = (text) => {
     return finalFinalString
 }
 
-module.exports = {getTextArray, getHtmlArray, getHtmlDiff, testFunction, getNGramArrayArray, textClean, getReverseNGramMap}
+module.exports = {getIndexDiff, getIndexMatchArray, getTextArray, getHtmlArray, getHtmlDiff, testFunction, getNGramArrayArray, textClean, getReverseNGramMap}
