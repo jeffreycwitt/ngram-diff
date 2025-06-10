@@ -38,3 +38,8 @@ it('get index match diff return.compare and check that it is an html string', ()
   const result = getIndexDiff("once upon a time, the brown fox when TO THE Store", "once UPon a time, a bear when to the store and ate cheese").compare
   expect(typeof result).toBe("object")
 });
+it('run text clean', () => {
+  const result = textClean("once upon a timae, the brown fox went TO THE Store & jumped & ate a fox")
+  const expectedResult = "once upon a time the brown fox went to the store et iumped et ate a fox"
+  expect(result).toEqual(expectedResult)
+});
